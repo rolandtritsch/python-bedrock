@@ -1,0 +1,10 @@
+name: aws-bedrock-playground
+description: An AWS Bedrock Playground
+runtime:
+  name: python
+  options:
+    toolchain: uv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/ca00e320-8f41-4802-ab47-9f3ef62fc928.zip
