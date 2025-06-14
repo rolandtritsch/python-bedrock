@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-infrastructure/__main__.py
-python_bedrock.egg-info/PKG-INFO
-python_bedrock.egg-info/SOURCES.txt
-python_bedrock.egg-info/dependency_links.txt
-python_bedrock.egg-info/requires.txt
-python_bedrock.egg-info/top_level.txt
