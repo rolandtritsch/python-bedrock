@@ -46,7 +46,6 @@ def get_mistral_question(ask):
 
 
 def answer(question):
-    print(question)
     response = bedrock_runtime.invoke_model(
         body=json.dumps(question["ask"]),
         modelId=question["modelId"],
