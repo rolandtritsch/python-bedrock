@@ -11,3 +11,9 @@ dependencies = [
 [tool.setuptools.packages.find]
 include = ["*"]
 exclude = ["infrastructure*"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "N"]

@@ -1,7 +1,8 @@
 """Main module for my AWS Bedrock playground"""
 
-import boto3 as aws
 import json
+
+import boto3 as aws
 
 bedrock = aws.client(service_name="bedrock")
 bedrock_runtime = aws.client(service_name="bedrock-runtime")
@@ -67,17 +68,13 @@ def main():
 
     print("\n---\n")
 
-    titan_question = get_titan_question(
-        "Give me a random planet from the solar system."
-    )
+    titan_question = get_titan_question("Give me a random planet from the solar system.")
     titan_answer = answer(titan_question)
     print(json.dumps(titan_answer, default=str))
 
     print("\n---\n")
 
-    mistral_question = get_mistral_question(
-        "Give me a random planet from the solar system."
-    )
+    mistral_question = get_mistral_question("Give me a random planet from the solar system.")
     mistral_answer = answer(mistral_question)
     print(json.dumps(mistral_answer, default=str))
 
