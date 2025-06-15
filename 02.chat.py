@@ -1,19 +1,21 @@
 """A very simple chat app (that keeps the context/history of the conversation)"""
 
-import boto3 as aws
 import json
+
+import boto3 as aws
 
 prompt_prefix = "User: "
 
 bedrock = aws.client(service_name="bedrock")
 bedrock_runtime = aws.client(service_name="bedrock-runtime")
 
+
 def get_model(model: str):
     model = bedrock.get_foundation_model(modelIdentifier=model)
     return model["modelDetails"]
 
 
-model = get_model('amazon.titan-text-express-v1')
+model = get_model("amazon.titan-text-express-v1")
 
 
 def get_request(prompt):
@@ -25,16 +27,11 @@ def get_request(prompt):
                 "stopSequences": [],
                 "temperature": 0.0,
                 "topP": 1.0,
-            }
+            },
         }
     else:
         raise Exception("Unknown model")
 
-def get_text(text):
-    if text.startswith("\n"):
-        return text[1:]
-    else:
-        return text
 
 def get_response(request):
     response = bedrock_runtime.invoke_model(
@@ -45,29 +42,29 @@ def get_response(request):
     )
     response_body = json.loads(response.get("body").read())
     if model["modelId"] == "amazon.titan-text-express-v1":
-        return get_text(response_body.get('results')[0].get('outputText'))
+        return response_body.get("results")[0].get("outputText").strip()
     else:
         raise Exception("Unknown model")
 
 
 def get_history(history):
-    return '\n'.join(history)
+    return "\n".join(history)
 
 
 def main():
-    print('Bot: A chat, we should have (use \'/quit\' to quit)!')
+    print("Bot: A chat, we should have (use '/quit' to quit)!")
     history = []
     while True:
         prompt = input(prompt_prefix)
-        if prompt.lower() == '/quit':
+        if prompt.lower() == "/quit":
             break
-        elif prompt.lower() == '/clear':
+        elif prompt.lower() == "/clear":
             history = []
             continue
-        elif prompt.lower() == '/history':
+        elif prompt.lower() == "/history":
             print(get_history(history))
             continue
-        elif prompt.lower() == '/help':
+        elif prompt.lower() == "/help":
             print("Available commands:\n")
             print("/quit: Quit the chat")
             print("/clear: Clear the chat history")
