@@ -2,13 +2,11 @@
 
 Learning AWS Bedrock.
 
-You first need to follow the instructions in the infrastructure [README][] to make sure the AWS resources are booted.
+Note: You first need request access to the bedrock models we use in the playground (see source code).
 
 Then you can run ...
 
 ```bash
 uv sync
-python main.py
+python src/01.getting_started.py
 ```
-
-[README]: ./infrastructure/README.md
